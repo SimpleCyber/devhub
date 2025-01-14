@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator and Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #qr-code {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>QR Code Generator and Scanner</h1>
+    <textarea id="input-data" placeholder="Enter your data here..."></textarea><br>
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <div id="qr-code"></div>
+
+    <h2>Scan QR Code</h2>
+    <input type="file" accept="image/*" capture="camera" id="qr-input" onchange="scanQRCode()">
+    <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script>
+        // Generate QR Code
+        function generateQRCode() {
+            const inputData = document.getElementById('input-data').value;
+            const qrCodeDiv = document.getElementById('qr-code');
+            qrCodeDiv.innerHTML = '';
+
+            if (inputData) {
+                QRCode.toCanvas(document.createElement('canvas'), inputData, { width: 200 }, function (error, canvas) {
+                    if (error) {
+                        console.error(error);
+                        return;
+                    }
+                    qrCodeDiv.appendChild(canvas);
+                });
+            } else {
+                alert('Please enter data to generate QR code.');
+            }
+        }
+
+        // Scan QR Code
+        function scanQRCode() {
+            const inputFile = document.getElementById('qr-input').files[0];
+
+            if (!inputFile) {
+                alert('Please select a file to scan.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const img = new Image();
+                img.src = reader.result;
+
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    context.drawImage(img, 0, 0);
+
+                    const html5QrCode = new Html5Qrcode("result");
+                    html5QrCode.decodeFromCanvas(canvas).then(decodedText => {
+                        document.getElementById('result').innerText = `Scanned Data: ${decodedText}`;
+                    }).catch(err => {
+                        console.error('QR Code scan failed', err);
+                        document.getElementById('result').innerText = 'Unable to scan QR Code.';
+                    });
+                };
+            };
+            reader.readAsDataURL(inputFile);
+        }
+    </script>
+</body>
+</html>

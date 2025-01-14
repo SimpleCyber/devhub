@@ -1,0 +1,242 @@
+import React, { useState, useEffect } from 'react';
+import { Sun, Moon, Github, Linkedin, Code2, Mail, FileText, 
+         ArrowRight, Sparkles, Trophy, Users } from 'lucide-react';
+import './ModernHomePage.css';
+
+const ModernHomePage = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [darkMode]);
+
+  return (
+    <div className="page-container">
+      <div className="gradient-blob"></div>
+      <div className="gradient-blob2"></div>
+      
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-content">
+          <div className="logo">
+            <Sparkles className="logo-icon" />
+            <span>DevHub</span>
+          </div>
+          <div className="nav-links">
+            <a href="#features">Features</a>
+            <a href="#showcase">Showcase</a>
+            <a href="#analytics">Analytics</a>
+            <button 
+              className="theme-toggle glass-effect-dashbord"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button className="connect-btn glass-effect-dashbord">
+              Connect <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        <section className="hero">
+          <div className="hero-content">
+            <h1 className="animated-gradient">
+              Showcase Your
+              <div className="rotating-text">
+                <span>Developer Journey</span>
+                <span>GitHub Projects</span>
+                <span>LeetCode Progress</span>
+                <span>Portfolio</span>
+              </div>
+            </h1>
+            <p className="hero-subtitle glass-effect-dashbord">
+              One platform to showcase all your developer achievements and get personalized career guidance
+            </p>
+            <div className="cta-group">
+              <button className="primary-cta glass-effect-dashbord">
+                Get Started <ArrowRight size={16} />
+              </button>
+              <div className="stats glass-effect-dashbord">
+                <div className="stat">
+                  <Trophy size={20} />
+                  <div>
+                    <h4>10K+</h4>
+                    <p>Developers</p>
+                  </div>
+                </div>
+                <div className="stat">
+                  <Users size={20} />
+                  <div>
+                    <h4>500+</h4>
+                    <p>Recruiters</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="hero-visual glass-effect-dashbord">
+            <div className="code-preview">
+              <div className="code-header">
+                <span className="dot"></span>
+                <span className="dot"></span>
+                <span className="dot"></span>
+              </div>
+              <pre>
+                <code>
+                  {`class Developer {
+  skills = ['React', 'Node.js']
+  leetcode = 200
+  github = 500
+                  
+  getJobReadiness() {
+    return "95%"
+  }
+}`}
+                </code>
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" className="features">
+          <h2>Platform Features</h2>
+          <div className="features-grid">
+            {[
+              {
+                icon: <Github size={24} />,
+                title: 'GitHub Integration',
+                description: 'Sync and showcase your repositories with real-time updates'
+              },
+              {
+                icon: <Code2 size={24} />,
+                title: 'LeetCode Progress',
+                description: 'Track your problem-solving journey and rankings'
+              },
+              {
+                icon: <Linkedin size={24} />,
+                title: 'LinkedIn Sync',
+                description: 'Keep your professional profile automatically updated'
+              },
+              {
+                icon: <FileText size={24} />,
+                title: 'Smart Resume',
+                description: 'AI-powered resume generator based on your activity'
+              }
+            ].map((feature, index) => (
+              <div key={index} className="feature-card glass-effect-dashbord">
+                <div className="feature-icon">{feature.icon}</div>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+                <div className="feature-progress">
+                  <div className="progress-bar" 
+                       style={{width: `${(index + 1) * 25}%`}}>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="analytics" className="analytics glass-effect-dashbord">
+          <h2>Your Developer Analytics</h2>
+          <div className="analytics-grid">
+            <div className="analytics-card">
+              <div className="analytics-header">
+                <h3>Job Readiness Score</h3>
+                <div className="score">95%</div>
+              </div>
+              <div className="progress-rings">
+                <div className="ring">
+                  <svg viewBox="0 0 36 36">
+                    <path d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="var(--primary)"
+                      strokeWidth="2"
+                      strokeDasharray="85, 100"
+                    />
+                    <text x="18" y="20.35" className="percentage">85%</text>
+                  </svg>
+                  <span>GitHub</span>
+                </div>
+                <div className="ring">
+                  <svg viewBox="0 0 36 36">
+                    <path d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="var(--secondary)"
+                      strokeWidth="2"
+                      strokeDasharray="75, 100"
+                    />
+                    <text x="18" y="20.35" className="percentage">75%</text>
+                  </svg>
+                  <span>LeetCode</span>
+                </div>
+              </div>
+            </div>
+            <div className="recommendations">
+              <h3>Next Steps</h3>
+              <ul className="todo-list">
+                <li className="completed">
+                  <span className="checkbox">✓</span>
+                  Complete GitHub Profile
+                </li>
+                <li>
+                  <span className="checkbox"></span>
+                  Solve 5 more LeetCode Hard problems
+                </li>
+                <li>
+                  <span className="checkbox"></span>
+                  Update LinkedIn Summary
+                </li>
+                <li>
+                  <span className="checkbox"></span>
+                  Add project documentation
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="glass-effect-dashbord">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <div className="logo">
+              <Sparkles className="logo-icon" />
+              <span>DevHub</span>
+            </div>
+            <p>Empowering developers to showcase their journey</p>
+          </div>
+          <div className="footer-links">
+            <div>
+              <h4>Platform</h4>
+              <a href="#features">Features</a>
+              <a href="#analytics">Analytics</a>
+              <a href="#showcase">Showcase</a>
+            </div>
+            <div>
+              <h4>Contact</h4>
+              <a href="mailto:hello@devhub.com">
+                <Mail size={16} /> hello@devhub.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default ModernHomePage;
