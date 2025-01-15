@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Github, Linkedin, Code2, Mail, FileText, 
          ArrowRight, Sparkles, Trophy, Users } from 'lucide-react';
 import './ModernHomePage.css';
+import { useNavigate } from "react-router-dom"; // Import the useNavigate hook
+
 
 const ModernHomePage = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -18,7 +20,16 @@ const ModernHomePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [darkMode]);
 
+
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate("/auth"); // Redirect to the Auth page
+  };
+
+
   return (
+
     <div className="page-container">
       <div className="gradient-blob"></div>
       <div className="gradient-blob2"></div>
@@ -39,7 +50,7 @@ const ModernHomePage = () => {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
-            <button className="connect-btn glass-effect-dashbord">
+            <button className="connect-btn glass-effect-dashbord" onClick={handleRedirect}>
               Connect <ArrowRight size={16} />
             </button>
           </div>
