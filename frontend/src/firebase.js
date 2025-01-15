@@ -4,15 +4,16 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 
 
+// Your Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyC_Dl9cQ7bYgljVoz8Y0AJFiFlvoNh17so",
-    authDomain: "devhub1-2569f.firebaseapp.com",
-    projectId: "devhub1-2569f",
-    storageBucket: "devhub1-2569f.firebasestorage.app",
-    messagingSenderId: "733252965275",
-    appId: "1:733252965275:web:4b247b5e02c2440b82473e",
-    measurementId: "G-1XBERFMXNK"
-  };
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -20,3 +21,6 @@ const app = initializeApp(firebaseConfig);
 // Export Firebase Auth and Google Provider
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+
+
