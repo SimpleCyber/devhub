@@ -49,6 +49,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',  # React frontend
+    'https://devhub-k9dg.onrender.com',  # React frontend on Render
 ]
 
 ROOT_URLCONF = 'chillguy.urls'
