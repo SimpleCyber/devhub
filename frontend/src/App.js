@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Components
 import ModernHomePage from './components/home/ModernHomePage'; 
 import AuthPages from './components/auth/AuthPages'; 
-import WelcomePage from './components/welcome/WelcomePage'; // New Welcome Page
+import Profile from "./components/profile/profile";
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route path="/auth" element={<AuthPages />} />
 
         {/* Define the Welcome Route */}
-        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
   );

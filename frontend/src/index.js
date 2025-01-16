@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 // home 1
 import App from './App';
 
+import "./components/home/ModernHomePage.css"
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

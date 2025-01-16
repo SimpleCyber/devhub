@@ -576,3 +576,9 @@
       align-items: center;
     }
   }
+
+
+  .theme-toggle {
+    background-color: transparent;
+  }
+  

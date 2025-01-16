@@ -4,11 +4,20 @@ DevHub is a platform designed to help developers showcase their professional pro
 
 ---
 
+# Setup 
+#### Problem: 
+    Facing issue to upload the both frontend and backend together 
+    `https://x.com/Satyam_yadav_04/status/1878520473895489927`
+
+
 ## 🚀 Features
 
 ### 1. Home Page  --- Done 👍🏻 16/1/2025 
 - User authentication via Google or email/password.  
 - Easy onboarding process with a simple and intuitive design.
+
+#### Problems :
+   - keys are directly exposed it willl not ne uploaded on the gitub
 
 ### 2. Profile Page
 - Input fields for:
