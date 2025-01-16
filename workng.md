@@ -19,7 +19,7 @@ DevHub is a platform designed to help developers showcase their professional pro
 #### Problems :
    - keys are directly exposed it willl not ne uploaded on the gitub
 
-### 2. Profile Page
+### 2. Profile Page   -- Done 👍🏻 16/1/2025
 - Input fields for:
   - Display Name.
   - LinkedIn, GitHub, and LeetCode usernames.
@@ -30,10 +30,16 @@ DevHub is a platform designed to help developers showcase their professional pro
   - Desired roles for employment.
 - Fully editable and user-friendly interface.
 
+
+
 ### 3. Dashboard Page
 - Aggregated data from GitHub, LeetCode, and LinkedIn.
-- Contact links and downloadable resume.
 - Interactive visualizations and summaries of user activities.
+- Bios from the gemini api
+- Update the profile pic from the leet code pic
+- update the name from linkedin name
+- leetcode fetch the streak and longest streak too
+  
 
 ### 4. Progress Tracking and Tasks
 - Heatmap visualization of activities (e.g., coding, posting frequency).
@@ -48,6 +54,15 @@ DevHub is a platform designed to help developers showcase their professional pro
   - LeetCode problem-solving history.
   - LinkedIn activity and posts.
 - SWOT analysis with actionable recommendations.
+
+--------
+
+### 6. Create all user profile and search page
+- direct comparison
+
+### 7. create group and compare 
+- get the daily task and do it 
+- add money as the bet winner can have the all  (select task for the month ) // start with the points :)
 
 ---
 
