@@ -7,6 +7,9 @@ import ModernHomePage from './components/home/ModernHomePage';
 import AuthPages from './components/auth/AuthPages'; 
 import Profile from "./components/profile/profile";
 
+import "./components/home/ModernHomePage.css"
+import DashboardPage from "./components/dashboard/DashboardPage";
+
 
 function App() {
   return (
@@ -18,8 +21,12 @@ function App() {
         {/* Define the Auth Route */}
         <Route path="/auth" element={<AuthPages />} />
 
-        {/* Define the Welcome Route */}
+        {/* Define the Profile Route */}
         <Route path="/profile" element={<Profile />} />
+
+        {/* Define the dashboard path */}
+        <Route path="/dashboard" element={<DashboardPage />} />
+
       </Routes>
     </Router>
   );

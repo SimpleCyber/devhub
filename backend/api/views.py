@@ -1,15 +1,25 @@
 import requests
 from django.http import JsonResponse
-
 import os
+import google.generativeai as genai
+from gtts import gTTS
+from io import BytesIO
+import base64
+
 
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file
 load_dotenv()
 
+
 GIT_HUB_KEY = os.getenv('GIT_HUB_KEY')
 LINKEDIN_API_KEY = os.getenv('LINKEDIN_API_KEY')
+GEMINI_API_KEY= os.getenv('GEMINI_API_KEY')
+
+
+# Configure Gemini API Key (Directly using the provided key)
+genai.configure(api_key=GEMINI_API_KEY)
 
 
 
@@ -78,7 +88,6 @@ def fetch_leetcode_profile(request, username):
         return JsonResponse(data, safe=False)
     else:
         return JsonResponse({"error": "User not found"}, status=404)
-
 
 
 
@@ -179,8 +188,6 @@ def fetch_github_data(request, username):
     return JsonResponse(result, safe=False)
 
 
-
-
 def fetch_linkedin_data(request, username):
     url = "https://linkedin-data-api.p.rapidapi.com/get-profile-data-by-url"
 
@@ -210,6 +217,19 @@ def fetch_linkedin_data(request, username):
             data = response.json()
         except ValueError:
             return JsonResponse({"error": "Invalid JSON response received from API"}, status=500)
+        
+
+
+                
+        summ = data.get("summary")
+        summary_prompt = (
+            f"Summarize the following text into bio max 25-30 words tech enthusiastic and add emojis accordingly \n\n{summ}"
+            )
+        model = genai.GenerativeModel(model_name="gemini-1.5-pro")
+        response = model.generate_content([summary_prompt])
+        if response and hasattr(response, "text"):
+            summarized_text = response.text
+
 
         # 🌿🌿🌿 Extract required data
         result = {
@@ -220,13 +240,15 @@ def fetch_linkedin_data(request, username):
             "isOpenToWork": data.get("isOpenToWork"),
             "isHiring": data.get("isHiring"),
             "profilePicture": data.get("profilePicture"),
-            "Bio": data.get("summary"),
+            "Bio":summarized_text,
             "headline": data.get("headline"),
             "Location": data.get("geo", {}).get("full"),
             "Education": [
                 edu.get("fieldOfStudy") for edu in data.get("education", []) if "fieldOfStudy" in edu
             ]
         }
+
+
 
         # 🌿🌿🌿 Fetch posts data and handle errors
         posts_data = fetch_linkedin_posts(username)
@@ -264,13 +286,26 @@ def fetch_linkedin_posts(username):
 
         # 🌿🌿🌿 Process each post and extract required details
         post_details = []
-        for post in posts:
+        for post in posts[:3]:
             image_url = None
             if post.get("image") and isinstance(post["image"], list) and len(post["image"]) > 0:
                 image_url = post["image"][0].get("url")
 
+            data = post.get("text")
+            summary_prompt = (
+            f"Summarize the following text into 2 very short and concise points with a header. "
+            f"Return the answer in JSON format with the keys 'header', 'points' (as a list), and 'link' (if present). "
+            f"Include 'link' only if a valid URL is mentioned:\n\n{data}"
+            )
+
+
+            model = genai.GenerativeModel(model_name="gemini-1.5-pro")
+            response = model.generate_content([summary_prompt])
+            if response and hasattr(response, "text"):
+                summarized_text = response.text
+
             post_info = {
-                "Caption": post.get("text"),
+                "Caption": summarized_text,
                 "Total Reactions": post.get("totalReactionCount"),
                 "Likes": post.get("likeCount"),
                 "Comments": post.get("commentsCount"),
@@ -284,3 +319,6 @@ def fetch_linkedin_posts(username):
         return post_details
     else:
         return {"error": f"Failed to fetch posts. Status code: {response.status_code}, Response: {response.text}"}
+
+
+

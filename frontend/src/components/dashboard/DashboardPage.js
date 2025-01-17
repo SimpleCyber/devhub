@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import {
   Github,
@@ -13,184 +13,250 @@ import {
   Repeat,
   Heart,
   Clock,
+  AlertCircle
 } from 'lucide-react';
+import axios from 'axios';
+import { Alert, AlertDescription } from '../ui/alert';
+
 import './DashboardPage.css';
 
-const defaultLinkedinData = {
-  userPhoto: "",
-  name: "Default User",
-  location: "Unknown",
-  bio: "I am a software developer.",
-  topPosts: [],
-};
 
-const defaultLeetcodeData = {
-  totalSolved: 0,
-  easy: 0,
-  medium: 0,
-  hard: 0,
-  submissionHistory: [],
-};
+const DashboardPage = () => {
+  // State for each platform's data and loading/error states
+  const [leetcodeData, setLeetcodeData] = useState(null);
+  const [githubData, setGithubData] = useState(null);
+  const [linkedinData, setLinkedinData] = useState(null);
+  const [errors, setErrors] = useState({});
 
-const defaultGithubData = {
-  email: "Not Provided",
-  followers: 0,
-  following: 0,
-  publicRepos: 0,
-  topProjects: [],
-};
+  // Fetch data for each platform
+  useEffect(() => {
+    const fetchLeetcodeData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/leetcode/dearcoder/`);
+        setLeetcodeData(response.data);
+      } catch (err) {
+        setErrors(prev => ({
+          ...prev,
+          leetcode: "Unable to fetch LeetCode data. Please try again later."
+        }));
+      }
+    };
 
-const DashboardPage = ({
-  leetcodeData = defaultLeetcodeData,
-  linkedinData = defaultLinkedinData,
-  githubData = defaultGithubData,
-}) => {
+    const fetchGithubData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/github/SimpleCyber/`);
+        setGithubData(response.data);
+      } catch (err) {
+        setErrors(prev => ({
+          ...prev,
+          github: "Unable to fetch GitHub data. Please try again later."
+        }));
+      }
+    };
+
+    const fetchLinkedinData = async () => {
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/linkedin/dearcoder-satyam/`);
+        setLinkedinData(response.data);
+      } catch (err) {
+        setErrors(prev => ({
+          ...prev,
+          linkedin: "Unable to fetch LinkedIn data. Please try again later."
+        }));
+      }
+    };
+
+    // Start all fetches concurrently
+    fetchLeetcodeData();
+    fetchGithubData();
+    fetchLinkedinData();
+  }, []);
+
+  const renderError = (platform) => {
+    if (errors[platform]) {
+      return (
+        <Alert variant="destructive" className="mb-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{errors[platform]}</AlertDescription>
+        </Alert>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="dashboard-container">
-      {/* Profile Card */}
-      <div className="profile-section glass-effect">
-        <div className="profile-header">
-          <img
-            src={linkedinData?.userPhoto || "https://fallback-url"}
-            alt={linkedinData?.name || "Default User"}
-            className="profile-photo"
-          />
-          <div className="profile-info">
-            <h1>{linkedinData?.name || "Default User"}</h1>
-            <div className="location">
-              <MapPin size={16} />
-              <span>{linkedinData?.location || "Unknown"}</span>
+    <div className="dashboard-container ">
+      {/* Profile Section */}
+      <div className="profile-section glass-effect ">
+        {renderError('linkedin')}
+        {linkedinData ? (
+          <div className="profile-header ">
+            <img
+              src={linkedinData.profilePicture || "/api/placeholder/100/100"}
+              alt={linkedinData.Name || "Profile"}
+              className="profile-photo"
+            />
+            <div className="profile-info">
+              <h1>{linkedinData.Name || "Name not available"}</h1>
+
+
+
+              <div className="location">
+                <MapPin size={16} />
+                <span>{linkedinData.Location || "Location not available"}</span>
+              </div>
+              <p className="bio">{linkedinData.Bio || "Bio not available"}</p>
             </div>
-            <p className="bio">{linkedinData?.bio || "Bio not provided."}</p>
           </div>
-        </div>
+        ) : (
+          <div className="animate-pulse">
+            <div className="flex gap-4">
+              <div className="w-24 h-24 bg-gray-200 rounded-full" />
+              <div className="flex-1 space-y-4">
+                <div className="h-4 bg-gray-200 rounded w-3/4" />
+                <div className="h-4 bg-gray-200 rounded w-1/2" />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* LeetCode Stats */}
-      <div className="leetcode-section glass-effect">
+      {/* LeetCode Section */}
+      <div className="leetcode-section glass-effect ">
+        {renderError('leetcode')}
         <div className="section-header">
           <Code2 size={24} />
-          <h2>LeetCode Progress</h2>
+          <h2 >LeetCode Progress</h2>
         </div>
 
-        <div className="leetcode-stats">
-          <div className="total-solved">
-            <h3>{leetcodeData?.totalSolved || 0}</h3>
-            <p>Problems Solved</p>
-          </div>
+        {leetcodeData ? (
+          <>
+            <div className="leetcode-stats ">
+              <div className="total-solved">
+                <h3>
+                  {leetcodeData?.matchedUser?.submitStats?.acSubmissionNum?.[0]?.count || 0}
+                </h3>
+                <p>Problems Solved</p>
+              </div>
 
-          <div className="difficulty-badges">
-            <div className="badge easy">
-              <span>{leetcodeData?.easy || 0}</span>
-              Easy
-            </div>
-            <div className="badge medium">
-              <span>{leetcodeData?.medium || 0}</span>
-              Medium
-            </div>
-            <div className="badge hard">
-              <span>{leetcodeData?.hard || 0}</span>
-              Hard
-            </div>
-          </div>
-        </div>
 
-        <div className="submission-graph">
-          <h3>Recent Submissions</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={leetcodeData?.submissionHistory || []}>
-              <Line type="monotone" dataKey="submissions" stroke="#ff9800" strokeWidth={2} />
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* GitHub Stats */}
-      <div className="github-section glass-effect">
-        <div className="section-header">
-          <Github size={24} />
-          <h2>GitHub Activity</h2>
-        </div>
-
-        <div className="github-stats">
-          <div className="stat-item">
-            <Mail size={16} />
-            <span>{githubData?.email || "Not Available"}</span>
-          </div>
-          <div className="stat-item">
-            <Users size={16} />
-            <span>
-              {githubData?.followers || 0} followers · {githubData?.following || 0} following
-            </span>
-          </div>
-          <div className="stat-item">
-            <GitFork size={16} />
-            <span>{githubData?.publicRepos || 0} repositories</span>
-          </div>
-        </div>
-
-        <div className="top-projects">
-          <h3>Top Projects</h3>
-          {githubData?.topProjects.map((project, index) => (
-            <div key={index} className="project-card glass-effect">
-              <img src={project.image || "https://fallback-image"} alt={project.name} />
-              <div className="project-info">
-                <h4>{project.name}</h4>
-                <p>{project.description}</p>
-                <div className="project-stats">
-                  <span>
-                    <Star size={14} /> {project.stars}
-                  </span>
-                  <span>
-                    <GitFork size={14} /> {project.forks}
-                  </span>
-                  <span>
-                    <MessageCircle size={14} /> {project.issues}
-                  </span>
-                </div>
-                <a href={project.link} className="project-link" target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
+              <div className="difficulty-badges">
+                {leetcodeData?.matchedUser?.submitStats?.acSubmissionNum?.map((stat, index) => (
+                  <div key={index} className={`badge ${stat.difficulty.toLowerCase()} p-2 rounded-lg text-center`}>
+                    <span className="block text-lg font-bold">{stat.count}</span>
+                    {stat.difficulty}
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </>
+        ) : (
+          <div className="animate-pulse space-y-4">
+            <div className="h-8 bg-gray-200 rounded w-1/2" />
+            <div className="grid grid-cols-3 gap-4">
+              <div className="h-20 bg-gray-200 rounded" />
+              <div className="h-20 bg-gray-200 rounded" />
+              <div className="h-20 bg-gray-200 rounded" />
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* LinkedIn Posts */}
-      <div className="linkedin-section glass-effect">
+
+
+      {/* GitHub Section */}
+      <div className="github-section glass-effect">
+        {renderError('github')}
+        <div className="section-header ">
+          <Github size={24} />
+          <h2 >GitHub Activity</h2>
+        </div>
+
+        {githubData ? (
+          <>
+            <div className="github-stats ">
+              <div className="stat-item">
+                <Mail size={16} />
+                <span>{githubData.profile.email || "Email not available"}</span>
+              </div>
+
+              <div className="stat-item ">
+                <Users size={16} />
+                <span>
+                  {githubData.profile.followers || 0} followers · {githubData.profile.following || 0} following
+                </span>
+              </div>
+              <div className="stat-item">
+                <GitFork size={16} />
+                <span>{githubData.profile.public_repos || 0} repositories</span>
+              </div>
+            </div>
+
+            <div className="top-projects">
+              <h3>Top Projects</h3>
+              <div className="space-y-4">
+                {githubData.top_repositories.map((repo, index) => (
+                  <div key={index} className="project-card p-4 rounded-lg bg-white bg-opacity-50">
+                    <h4 className="font-bold">{repo.name}</h4>
+                    <p className="text-sm text-gray-600">{repo.language}</p>
+                    <div className="mt-2">
+                      <a
+                        href={repo.html_url}
+                        className="text-blue-600 hover:text-blue-800"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Project
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="animate-pulse space-y-4">
+            <div className="h-4 bg-gray-200 rounded w-3/4" />
+            <div className="h-4 bg-gray-200 rounded w-1/2" />
+            <div className="h-4 bg-gray-200 rounded w-2/3" />
+          </div>
+        )}
+      </div>
+
+      {/* LinkedIn Posts Section */}
+      <div className="linkedin-section glass-effect ">
+        {renderError('linkedin')}
         <div className="section-header">
           <Linkedin size={24} />
-          <h2>Recent LinkedIn Activity</h2>
+          <h2 >Recent LinkedIn Activity</h2>
         </div>
 
-        <div className="linkedin-posts">
-          {linkedinData?.topPosts.map((post, index) => (
-            <div key={index} className="post-card glass-effect">
-              {post.image && <img src={post.image} alt="Post" className="post-image" />}
-              <div className="post-content">
-                <p>{post.content}</p>
-                <div className="post-stats">
-                  <span>
-                    <Heart size={14} /> {post.reactions}
+        {linkedinData?.Posts ? (
+          <div className="linkedin-posts ">
+            {linkedinData.Posts.slice(0, 3).map((post, index) => (
+              <div key={index} className="post-card p-4 rounded-lg bg-white bg-opacity-50">
+                <p className="mb-2">{post.Caption}</p>
+                <div className="post-stats flex gap-4 text-sm text-gray-600">
+                  <span className="flex items-center gap-1">
+                    <Heart size={14} /> {post['Total Reactions']}
                   </span>
-                  <span>
-                    <MessageCircle size={14} /> {post.comments}
+                  <span className="flex items-center gap-1">
+                    <MessageCircle size={14} /> {post.Comments}
                   </span>
-                  <span>
-                    <Repeat size={14} /> {post.reposts}
-                  </span>
-                  <span>
-                    <Clock size={14} /> {post.date}
+                  <span className="flex items-center gap-1">
+                    <Repeat size={14} /> {post.Reposts}
                   </span>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="animate-pulse space-y-4">
+            <div className="h-24 bg-gray-200 rounded" />
+            <div className="h-24 bg-gray-200 rounded" />
+            <div className="h-24 bg-gray-200 rounded" />
+          </div>
+        )}
       </div>
     </div>
   );

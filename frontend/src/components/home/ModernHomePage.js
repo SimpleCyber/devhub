@@ -248,6 +248,7 @@ const ModernHomePage = () => {
       </footer>
     </div>
   );
+
 };
 
 export default ModernHomePage;

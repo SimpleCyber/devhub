@@ -21,6 +21,12 @@ const Header = () => {
     navigate("/auth");
   };
 
+  const handleRedirectDashboard = () => {
+    navigate("/dashboard");
+  };
+
+  
+
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-content">
@@ -30,7 +36,7 @@ const Header = () => {
         </div>
         <div className="nav-links">
           <a href="#features">Features</a>
-          <a href="#showcase">Showcase</a>
+          <a href="#showcase" onClick={handleRedirectDashboard}>Dashboard</a>
           <a href="#analytics">Analytics</a>
           <button 
             className="theme-toggle glass-effect-dashbord"
