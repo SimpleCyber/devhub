@@ -8,7 +8,7 @@ function LinkedinProfile() {
 
     const fetchLinkedInData = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/linkedin/${username}/`);
+            const response = await axios.get(`https://devhub-k9dg.onrender.com/api/linkedin/${username}/`);
             setData(response.data);
             setError(""); // Clear any previous error
         } catch (err) {
