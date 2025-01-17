@@ -9,7 +9,8 @@ const LeetCodeProfile = () => {
 
     const fetchProfile = async () => {
         try {
-            const response = await axios.get(`https://devhub-k9dg.onrender.com/api/leetcode/${username}/`);
+            const response = await axios.get(`http://127.0.0.1:8000/api/leetcode/${username}/`);
+            // const response = await axios.get(`https://devhub-k9dg.onrender.com/api/leetcode/${username}/`);
             setProfile(response.data);
             setError("");
             console.log("Fetched Profile:", response.data); // Debugging
