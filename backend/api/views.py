@@ -189,16 +189,13 @@ def fetch_github_data(request, username):
 
 
 def fetch_linkedin_data(request, username):
-    url = "https://linkedin-data-api.p.rapidapi.com/get-profile-data-by-url"
+    url = "https://linkedin-api8.p.rapidapi.com/get-profile-data-by-url"
 
     # 🌿🌿🌿 Determine whether input is a URL or username
     if username.startswith("http"):
         querystring = {"url": username}  # Use URL if it starts with "http"
     else:
         querystring = {"url": f"https://www.linkedin.com/in/{username}"}  # Construct URL if it's a username
-
-    print("🌿",LINKEDIN_API_KEY)
-
 
     headers = {
         "x-rapidapi-key": LINKEDIN_API_KEY,
@@ -221,14 +218,14 @@ def fetch_linkedin_data(request, username):
 
 
                 
-        summ = data.get("summary")
-        summary_prompt = (
-            f"Summarize the following text into bio max 25-30 words tech enthusiastic and add emojis accordingly \n\n{summ}"
-            )
-        model = genai.GenerativeModel(model_name="gemini-1.5-pro")
-        response = model.generate_content([summary_prompt])
-        if response and hasattr(response, "text"):
-            summarized_text = response.text
+        # summ = data.get("summary")
+        # summary_prompt = (
+        #     f"Summarize the following text into bio max 25-30 words tech enthusiastic and add emojis accordingly \n\n{summ}"
+        #     )
+        # model = genai.GenerativeModel(model_name="gemini-1.5-pro")
+        # response = model.generate_content([summary_prompt])
+        # if response and hasattr(response, "text"):
+        #     summarized_text = response.text
 
 
         # 🌿🌿🌿 Extract required data
@@ -240,7 +237,7 @@ def fetch_linkedin_data(request, username):
             "isOpenToWork": data.get("isOpenToWork"),
             "isHiring": data.get("isHiring"),
             "profilePicture": data.get("profilePicture"),
-            "Bio":summarized_text,
+            "Bio":data.get("summary"), #summarized_text,
             "headline": data.get("headline"),
             "Location": data.get("geo", {}).get("full"),
             "Education": [
@@ -291,21 +288,19 @@ def fetch_linkedin_posts(username):
             if post.get("image") and isinstance(post["image"], list) and len(post["image"]) > 0:
                 image_url = post["image"][0].get("url")
 
-            data = post.get("text")
-            summary_prompt = (
-            f"Summarize the following text into 2 very short and concise points with a header. "
-            f"Return the answer in JSON format with the keys 'header', 'points' (as a list), and 'link' (if present). "
-            f"Include 'link' only if a valid URL is mentioned:\n\n{data}"
-            )
-
-
-            model = genai.GenerativeModel(model_name="gemini-1.5-pro")
-            response = model.generate_content([summary_prompt])
-            if response and hasattr(response, "text"):
-                summarized_text = response.text
+            # data = post.get("text")
+            # summary_prompt = (
+            # f"Summarize the following text into 2 very short and concise points with a header. "
+            # f"Return the answer in JSON format with the keys 'header', 'points' (as a list), and 'link' (if present). "
+            # f"Include 'link' only if a valid URL is mentioned:\n\n{data}"
+            # )
+            # model = genai.GenerativeModel(model_name="gemini-1.5-pro")
+            # response = model.generate_content([summary_prompt])
+            # if response and hasattr(response, "text"):
+            #     summarized_text = response.text
 
             post_info = {
-                "Caption": summarized_text,
+                "Caption":post.get("text") ,# summarized_text,
                 "Total Reactions": post.get("totalReactionCount"),
                 "Likes": post.get("likeCount"),
                 "Comments": post.get("commentsCount"),
