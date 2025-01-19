@@ -1,0 +1,410 @@
+body {
+    background-color: #f3f4f6;
+    min-height: 100vh;
+  }
+
+  .straight{
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: .3rem;
+    font-weight: bold;
+  }
+  .dashboard-container {
+    display: flex;
+  }
+  
+  .main-content {
+    flex: 1;
+    transition: margin-left 0.3s;
+    padding: 2rem;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 4rem;
+    margin-right: -12rem;
+  }
+  
+  .main-content.sidebar-closed {
+    margin-left: -7rem;
+    margin-right: -8rem; 
+  }
+  
+  h1 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+  
+  /* Grid Layouts */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .metrics-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Card Styles */
+  .card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .icon-bg {
+    padding: 0.5rem;
+    border-radius: 9999px;
+  }
+  
+  .icon-bg.orange {
+    background-color: #f97316;
+  }
+  .icon-bg.yellow {
+    background-color: #eab308;
+  }
+  .icon-bg.blue {
+    background-color: #3b82f6;
+  }
+  .icon-bg.green {
+    background-color: #22c55e;
+  }
+  
+  .icon-bg svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+  }
+  
+  .card-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+  
+  .card-subvalue {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  .card-details span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .card-details svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.25rem;
+  }
+  
+  /* Project Item Styles */
+  .project-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+  }
+  
+  .project-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .project-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    margin-right: 0.75rem;
+  }
+  
+  .project-icon.purple {
+    background-color: #a855f7;
+  }
+  .project-icon.green {
+    background-color: #22c55e;
+  }
+  .project-icon.blue {
+    background-color: #3b82f6;
+  }
+  
+  .project-name {
+    font-weight: 500;
+  }
+  
+  .project-update {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .project-views {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  /* Major Project Item Styles */
+  .major-project-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+  }
+  
+  .major-project-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .major-project-name {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+  
+  .major-project-date {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .major-project-commits {
+    font-size: 0.875rem;
+    color: #22c55e;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Experience and Achievement Styles */
+  .experience-achievement-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 1024px) {
+    .experience-achievement-container {
+      flex-direction: row;
+    }
+  }
+  
+  .experience-section,
+  .achievement-section {
+    flex: 1;
+    padding: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .experience-section {
+      border-right: 1px solid #e5e7eb;
+      padding-right: 1.5rem;
+    }
+  
+    .achievement-section {
+      padding-left: 1.5rem;
+    }
+  }
+  
+  .experience-item,
+  .achievement-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .experience-icon,
+  .achievement-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    color: #6b7280;
+  }
+  
+  .experience-content,
+  .achievement-content {
+    flex: 1;
+  }
+  
+  .experience-title,
+  .achievement-title {
+    font-weight: 500;
+  }
+  
+  .experience-org,
+  .achievement-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .experience-date {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #111827;
+    color: white;
+    transition: width 0.3s;
+    overflow: hidden;
+  }
+  
+  .sidebar.open {
+    width: 16rem;
+  }
+  
+  .sidebar.closed {
+    width: 0rem;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-image {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+  }
+  
+  .profile-details {
+    margin-left: 0.75rem;
+    transition: opacity 0.2s;
+  }
+  
+  .sidebar.closed .profile-details {
+    opacity: 0;
+  }
+  
+  .profile-name {
+    font-weight: 600;
+  }
+  
+  .profile-view {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+  
+  .sidebar-toggle {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+  }
+  
+  .sidebar-toggle:hover {
+    color: white;
+  }
+  
+  .sidebar-nav {
+    margin-top: 1.5rem;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    margin: 0.5rem 0;
+    border-radius: 0.375rem;
+    cursor: pointer;
+  }
+  
+  .nav-item.active {
+    background-color: #374151;
+    color: white;
+  }
+  
+  .nav-item:not(.active) {
+    color: #9ca3af;
+  }
+  
+  .nav-item:hover:not(.active) {
+    background-color: #374151;
+    color: white;
+  }
+  
+  .nav-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+  }
+  
+  .nav-text {
+    transition: opacity 0.2s;
+  }
+  
+  .sidebar.closed .nav-text {
+    opacity: 0;
+  }
+  
+  

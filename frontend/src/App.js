@@ -9,6 +9,7 @@ import Profile from "./components/profile/profile";
 
 import "./components/home/ModernHomePage.css"
 import DashboardPage from "./components/dashboard/DashboardPage";
+import Dashboard from "./components/dashboard/dashboard";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         {/* Define the dashboard path */}
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={ <Dashboard />} />
 
       </Routes>
     </Router>
