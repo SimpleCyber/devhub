@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
-import './profile.css';
 
 import Header from "../home/Header";
 import Footer from "../home/Footer";
+import './profile.css';
 
 const Profile = () => {
   const location = useLocation();
@@ -97,7 +97,9 @@ const Profile = () => {
   return (
     <>
     <Header />
-    <div className="main-profile-page-container">
+      <div className="gradient-blob"></div>
+      <div className="gradient-blob2"></div>
+    <div className="main-profile-page-container glass-effect auth-card">
       
       <div className="main-profile-toast-container">
         {message && (

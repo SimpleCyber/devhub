@@ -8,7 +8,6 @@ import AuthPages from './components/auth/AuthPages';
 import Profile from "./components/profile/profile";
 
 import "./components/home/ModernHomePage.css"
-import DashboardPage from "./components/dashboard/DashboardPage";
 import Dashboard from "./components/dashboard/dashboard";
 
 

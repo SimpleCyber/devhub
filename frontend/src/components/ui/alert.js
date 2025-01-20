@@ -15,11 +15,6 @@ const getIcon = (variant) => {
       return <AlertCircle className="alert-icon" />;
   }
 };
-
-export const AlertTitle = ({ className = '', ...props }) => (
-  <h5 className={`alert-title ${className}`} {...props} />
-);
-
 export const AlertDescription = ({ className = '', ...props }) => (
   <div className={`alert-description ${className}`} {...props} />
 );
