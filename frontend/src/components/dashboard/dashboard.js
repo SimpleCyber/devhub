@@ -20,6 +20,7 @@ import "../../api2/github.css";
 import LeetCodeStats from "../../api2/leetcode";
 import LinkedInCard from "../../api2/linkedin";
 import LinkedInProfile from "../../api2/linkedin";
+import { MajorProject } from "../../api2/maijorproject";
 
 const dummyData = {
   profile: {
@@ -280,7 +281,6 @@ const leetcodeData = {
   ],
 };
 
-
 const demoData = {
   Username: "dearcoder-satyam",
   ProfilePicture:
@@ -318,14 +318,13 @@ const demoData = {
     },
   ],
   Skills: [
-    { Name: "Django", PassedSkillAssessment: false },
+    { Name: "Django", PassedSkillAssessment: true },
     { Name: "Flask", PassedSkillAssessment: false },
     { Name: "C++", PassedSkillAssessment: false },
     { Name: "Python ", PassedSkillAssessment: false },
-    { Name: "DSA", PassedSkillAssessment: false },
+    { Name: "DSA", PassedSkillAssessment: true },
   ],
 };
-
 
 const MetricCard = ({ icon: Icon, title, value, subValue, color, details }) => (
   <div className="card">
@@ -372,24 +371,25 @@ const ProjectItem = ({ id, name, updatedAt, views }) => (
   </div>
 );
 
-const MajorProjectItem = ({ name, date, commits }) => (
-  <div className="major-project-item">
-    <div className="major-project-info">
-      <Link className="major-project-icon" />
-      <div>
-        <p className="major-project-name">
-          {name}
-          <ArrowUpRight />
-        </p>
-        <p className="major-project-date">{date}</p>
-      </div>
-    </div>
-    <div className="major-project-commits">
-      <GitFork />
-      {commits} Commits
-    </div>
-  </div>
-);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const ExperienceItem = ({ icon: Icon, title, organization, date }) => (
   <div className="experience-item">
@@ -466,15 +466,16 @@ export default function Dashboard() {
     { id: "P3", name: "Portfolio", updatedAt: "yesterday", views: 12900 },
   ];
 
-  const majorProjects = [
-    {
-      name: "Fake social media Profile detection",
-      date: "12/Jan/2025",
-      commits: 12,
-    },
-    { name: "Shop Link", date: "11/March/2024", commits: 56 },
-    { name: "Portfolio", date: "14/Jan/2024", commits: 13 },
-  ];
+
+
+
+
+
+
+
+
+
+
 
   const experiences = [
     {
@@ -515,7 +516,6 @@ export default function Dashboard() {
     },
   ];
 
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -542,8 +542,6 @@ export default function Dashboard() {
   }, [components.length]);
 
   return (
-
-    
     <div className="dashboard-container">
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       <div
@@ -561,34 +559,32 @@ export default function Dashboard() {
         </div>
 
         <div className="projects-grid">
-        <div className="card">
-      {components[currentIndex]}
-    </div>
+          <div className="card">
+            {components[currentIndex]}
+            {/* <LinkedInProfile demoData={demoData} /> */}
+          </div>
+
+
+
+
+
+
 
           <div className="card">
-            <h2 className="card-title">Major Projects</h2>
-            {majorProjects.map((project, index) => (
-              <MajorProjectItem key={index} {...project} />
-            ))}
+            <MajorProject />
           </div>
+
+
+
+
+
+
+
+
+
         </div>
 
-        <div className="card">
-          <div className="experience-achievement-container">
-            <div className="experience-section">
-              <h2 className="card-title">Work & Education</h2>
-              {experiences.map((exp, index) => (
-                <ExperienceItem key={index} {...exp} />
-              ))}
-            </div>
-            <div className="achievement-section">
-              <h2 className="card-title">Achievements & Certifications</h2>
-              {achievements.map((achievement, index) => (
-                <AchievementItem key={index} {...achievement} />
-              ))}
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   );

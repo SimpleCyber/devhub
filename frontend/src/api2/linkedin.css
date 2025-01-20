@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   width: 40%;
-  
+  margin-left: 1.7rem;
 }
 
 .exp{
@@ -45,6 +45,8 @@
 .profile-details {
   display: flex;
   flex-direction: column;
+  margin-top: .5rem;
+  margin-left: -2rem;
 }
 
 .profile-name {
@@ -95,7 +97,7 @@
   display: flex;
   gap: 1rem;
   padding: 1rem;
-  background-color: #f9fbf9;
+  background-color: #f6f8fa;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -123,7 +125,7 @@
 /* Education styles */
 .education-item {
   padding: 1rem;
-  background-color: #f9fbf9;
+  background-color: #f6f8fa;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -136,7 +138,9 @@
 }
 
 .education-details h4 {
-  color: #282a2c;
+  color: #2d2d2d;
+  font-size: small;
+  margin-bottom: .5rem;
 }
 
 .education-details{
@@ -234,31 +238,30 @@
 
 }
 
+
+
+
 .Calendar{
   color: rgb(101, 161, 29);
-  margin-right: .4rem;
-  font-weight: bold;
-  stroke-width: 3;
 }
 
 .Workflow{
   color: #2563eb;
-  margin-right: .4rem;
-  font-weight: bold;
-  stroke-width: 3; 
+    
 }
 
 .Folders{
   color: #eb256e;
-  margin-right: .4rem;
-  font-weight: bold;
-  stroke-width: 3; 
+    
 }
 
 
 .Book{
   color: #93a600;
+}
+
+.Calendar, .Workflow, .Folders, .Book{
   margin-right: .4rem;
   font-weight: bold;
-  stroke-width: 3; 
+  color: #4B5563;
 }

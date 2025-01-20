@@ -79,7 +79,7 @@ const Profile = () => {
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      const base64String = reader.result.split(',')[1]; // Extract the Base64 part
+      const base64String = reader.result.split(',')[1];
       setFormData(prev => ({
         ...prev,
         resume: base64String,
@@ -91,44 +91,44 @@ const Profile = () => {
       setMessage('Error uploading the file');
     };
 
-    reader.readAsDataURL(file); // Convert the file to Base64
+    reader.readAsDataURL(file);
   };
 
   return (
-    <div className="page-container">
-      <Header />
-      <div className="toast-container">
+    <>
+    <Header />
+    <div className="main-profile-page-container">
+      
+      <div className="main-profile-toast-container">
         {message && (
-          <div className={`toast ${message.includes('success') ? 'toast-success' : 'toast-error'}`}>
-            <div className="toast-message">{message}</div>
-            <button className="toast-close" onClick={() => setMessage('')}>×</button>
+          <div className={`main-profile-toast ${message.includes('success') ? 'main-profile-toast-success' : 'main-profile-toast-error'}`}>
+            <div className="main-profile-toast-message">{message}</div>
+            <button className="main-profile-toast-close" onClick={() => setMessage('')}>×</button>
           </div>
         )}
       </div>
 
-      <div className="profile-container glass-effect">
-        <div className="profile-header">
-          <div className="profile-image">
+      <div className="main-profile-container">
+        <div className="main-profile-header">
+          <div className="main-profile-image-container">
             <img
-              src={formData.profileImage}
+              src={formData.profileImage || "/placeholder.svg"}
               alt="Profile"
-              className="profile-img"
+              className="main-profile-img"
             />
           </div>
-          <h1>Profile Information</h1>
+          <h1 className="main-profile-title">Profile Information</h1>
           <button
-            className={`edit-button ${isEditing ? 'save-mode' : ''}`}
+            className={`main-profile-edit-button ${isEditing ? 'main-profile-save-mode' : ''}`}
             onClick={() => setIsEditing(!isEditing)}
           >
             {isEditing ? 'Save Changes' : 'Edit Profile'}
           </button>
         </div>
 
-        {message && <div className="message">{message}</div>}
-
-        <form onSubmit={handleSubmit} className="profile-form">
-          <div className="form-grid">
-            <div className="form-group">
+        <form onSubmit={handleSubmit} className="main-profile-form">
+          <div className="main-profile-form-grid">
+            <div className="main-profile-form-group">
               <label htmlFor="email">Email ID</label>
               <input
                 type="email"
@@ -137,11 +137,11 @@ const Profile = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 disabled
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="main-profile-form-group">
               <label htmlFor="fullName">Full Name</label>
               <input
                 type="text"
@@ -150,11 +150,11 @@ const Profile = () => {
                 value={formData.fullName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="main-profile-form-group">
               <label htmlFor="phone">Phone Number</label>
               <input
                 type="text"
@@ -163,11 +163,11 @@ const Profile = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="main-profile-form-group">
               <label htmlFor="linkedin">LinkedIn</label>
               <input
                 type="text"
@@ -176,11 +176,11 @@ const Profile = () => {
                 value={formData.linkedin}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="main-profile-form-group">
               <label htmlFor="github">GitHub</label>
               <input
                 type="text"
@@ -189,11 +189,11 @@ const Profile = () => {
                 value={formData.github}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="form-group">
+            <div className="main-profile-form-group">
               <label htmlFor="leetcode">LeetCode</label>
               <input
                 type="text"
@@ -202,29 +202,29 @@ const Profile = () => {
                 value={formData.leetcode}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="form-input"
+                className="main-profile-form-input"
               />
             </div>
 
-            <div className="resume-section">
+            <div className="main-profile-resume-section">
               <label>Resume</label>
               {isEditing ? (
-                <div className="resume-upload">
+                <div className="main-profile-resume-upload">
                   <input
                     type="file"
                     onChange={handleFileUpload}
                     accept=".pdf,.doc,.docx"
-                    className="file-input"
+                    className="main-profile-file-input"
                   />
                 </div>
               ) : (
-                <div className="resume-display">
+                <div className="main-profile-resume-display">
                   {formData.resume ? (
-                    <a href={`data:application/pdf;base64,${formData.resume}`} download="resume.pdf" className="resume-link">
+                    <a href={`data:application/pdf;base64,${formData.resume}`} download="resume.pdf" className="main-profile-resume-link">
                       Download Resume
                     </a>
                   ) : (
-                    <span className="no-resume">No resume uploaded</span>
+                    <span className="main-profile-no-resume">No resume uploaded</span>
                   )}
                 </div>
               )}
@@ -232,19 +232,21 @@ const Profile = () => {
           </div>
 
           {isEditing && (
-            <div className="form-actions">
-              <button type="button" className="cancel-button" onClick={() => setIsEditing(false)}>
+            <div className="main-profile-form-actions">
+              <button type="button" className="main-profile-cancel-button" onClick={() => setIsEditing(false)}>
                 Cancel
               </button>
-              <button type="submit" className="save-button" disabled={loading}>
+              <button type="submit" className="main-profile-save-button" disabled={loading}>
                 {loading ? 'Saving...' : 'Save Profile'}
               </button>
             </div>
           )}
         </form>
       </div>
-      <Footer />
+      
     </div>
+    <Footer />
+    </>
   );
 };
 

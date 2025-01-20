@@ -1,5 +1,4 @@
 :root {
-    /* Light theme */
     --primary-light: #7C3AED;
     --secondary-light: #2DD4BF;
     --background-light: #F4F7FE;
@@ -10,7 +9,6 @@
     --gradient-2-light: #2DD4BF;
     --gradient-3-light: #60A5FA;
     
-    /* Dark theme */
     --primary-dark: #A78BFA;
     --secondary-dark: #5EEAD4;
     --background-dark: #0F172A;
@@ -64,7 +62,6 @@
     min-height: 100vh;
   }
   
-  /* Animated gradient blobs */
   .gradient-blob {
     position: fixed;
     top: -200px;
@@ -99,7 +96,6 @@
     100% { transform: translate(0, 0) rotate(360deg); }
   }
   
-  /* Glassmorphism effect */
   .glass-effect-dashbord {
     background: var(--surface);
     backdrop-filter: blur(10px);
@@ -107,7 +103,6 @@
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
   }
   
-  /* Navbar */
   .navbar {
     position: fixed;
     top: 0;
@@ -184,7 +179,6 @@
     transform: translateY(-2px);
   }
   
-  /* Hero Section */
   .hero {
     padding: 8rem 2rem 4rem;
     max-width: 1200px;
@@ -195,7 +189,6 @@
     align-items: center;
   }
   
-/* Hero Section (continued) */
 .hero-content h1 {
     font-size: 4rem;
     line-height: 1.2;
@@ -300,7 +293,6 @@
     font-size: 0.875rem;
   }
   
-  /* Code Preview */
   .hero-visual {
     padding: 2rem;
     border-radius: 1rem;
@@ -336,7 +328,6 @@
     color: var(--text-primary);
   }
   
-  /* Features Section */
   .features {
     padding: 6rem 2rem;
     max-width: 1200px;
@@ -395,7 +386,6 @@
     transition: width 1s ease;
   }
   
-  /* Analytics Section */
   .analytics {
     padding: 4rem 2rem;
     margin: 2rem auto;
@@ -485,7 +475,6 @@
     background: var(--primary);
   }
   
-  /* Footer */
   footer {
     margin-top: 4rem;
     padding: 4rem 2rem;
@@ -527,7 +516,6 @@
     color: var(--primary);
   }
   
-  /* Responsive Design */
   @media (max-width: 1024px) {
     .hero {
       grid-template-columns: 1fr;

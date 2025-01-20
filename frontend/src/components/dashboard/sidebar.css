@@ -1,4 +1,4 @@
-.sidebar {
+/* .sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,9 +28,9 @@
     align-items: center;
   }
   
-  .profile-image {
-    width: 2.5rem;
-    height: 2.5rem;
+  .profile-info {
+    width: .5rem;
+    height: .5rem;
     border-radius: 9999px;
   }
   
@@ -108,4 +108,4 @@
   .sidebar.closed .nav-text {
     opacity: 0;
   }
-  
+   */

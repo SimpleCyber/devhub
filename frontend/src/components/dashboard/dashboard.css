@@ -13,6 +13,15 @@ body {
   .dashboard-container {
     display: flex;
   }
+
+
+  .dashboard-container {
+    padding: 2rem;
+    display: grid;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
   
   .main-content {
     flex: 1;
@@ -197,36 +206,7 @@ body {
     color: #6b7280;
   }
   
-  /* Major Project Item Styles */
-  .major-project-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 0;
-  }
-  
-  .major-project-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .major-project-name {
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-  }
-  
-  .major-project-date {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
-  
-  .major-project-commits {
-    font-size: 0.875rem;
-    color: #22c55e;
-    display: flex;
-    align-items: center;
-  }
+ 
   
   /* Experience and Achievement Styles */
   .experience-achievement-container {
@@ -304,6 +284,7 @@ body {
     color: white;
     transition: width 0.3s;
     overflow: hidden;
+    z-index: 9;
   }
   
   .sidebar.open {
@@ -321,12 +302,20 @@ body {
     padding: 1rem;
   }
   
-  .profile-info {
+  .profile-info-sidebar {
     display: flex;
     align-items: center;
+    flex-direction: row;
+  }
+
+  .profile-name-sidebar{
+    color: grey;
+    padding-left: 2.5rem;
+    font-size: 1.3rem;
+    margin-bottom: .7rem;
   }
   
-  .profile-image {
+  .profile-image-sidebar {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 9999px;
@@ -407,4 +396,68 @@ body {
     opacity: 0;
   }
   
+
+
+
+
+
+
+
+
+
+
   
+/* Additional custom styles if needed beyond Tailwind */
+.major-project-item {
+  position: relative;
+  width: 100%;
+  margin: 20px auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.major-project-info {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.major-project-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.major-project-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.major-project-name a:hover {
+  color: #2563eb;
+}
+
+.major-project-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  height: 600px; /* Adjust height as needed */
+  overflow: hidden;
+}
+
+.project-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 10%;
+  border: none;
+  background: #f9fafb;
+}
