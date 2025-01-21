@@ -8,6 +8,10 @@
     --gradient-1-light: #7C3AED;
     --gradient-2-light: #2DD4BF;
     --gradient-3-light: #60A5FA;
+    --github:grey;
+    --leetcode:rgb(214, 144, 14);
+    --linkedin:rgb(4, 4, 183);
+
     
     --primary-dark: #A78BFA;
     --secondary-dark: #5EEAD4;
@@ -215,10 +219,12 @@
     100% { background-position: 0% 50%; }
   }
   
-  .rotating-text {
+  /* .rotating-text {
     height: 4rem;
+    width: 5rem;
     overflow: hidden;
     margin-top: 0.5rem;
+
   }
   
   .rotating-text span {
@@ -226,15 +232,70 @@
     height: 100%;
     animation: rotate-words 8s infinite;
     color: var(--primary);
+  } */
+
+
+
+  .dev-icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: .4rem;
+    margin-left: -5rem;
+    margin-top: 2rem;  
+    margin-bottom: 2rem;
+  }
+
+
+  .back-arrow{
+    font-weight: bold;
+    font-size: larger;
+    width: 2rem;
+    height: 2rem;
+    transform: scale(2);
+
+  }
+
+  
+  .leetcode, .linkedin, .github{
+    width: 5rem;
+    transform: scale(2);
+    color: var(--primary);
   }
   
-  @keyframes rotate-words {
+  /* .linkedin{
+    color: var(--linkedin);
+  }
+  
+  .github{
+    color: var(--github);
+  }
+  
+  .leetcode{
+    color: var(--leetcode);
+  } */
+
+
+  
+  /* @keyframes rotate-words {
     0%, 20% { transform: translateY(0); }
     25%, 45% { transform: translateY(-100%); }
     50%, 70% { transform: translateY(-200%); }
     75%, 95% { transform: translateY(-300%); }
     100% { transform: translateY(-400%); }
-  }
+  } */
+
+
+  
+
+
+
+
+
+
+
+  
   
   .hero-subtitle {
     font-size: 1.25rem;
@@ -319,6 +380,16 @@
     background: var(--text-secondary);
     opacity: 0.5;
   }
+
+  /* .dot1{
+    background: rgb(255, 82, 82);
+  }
+  .dot2{
+    background: rgb(46, 255, 46);
+  }
+  .dot3{
+    background: rgb(247, 247, 5);
+  } */
   
   .code-preview pre {
     padding: 1.5rem;
@@ -330,7 +401,7 @@
   
   .features {
     padding: 6rem 2rem;
-    max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
   }
   
@@ -346,7 +417,7 @@
   
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
   }
   
@@ -425,7 +496,11 @@
   }
   
   .ring {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
   
   .ring svg {
@@ -445,6 +520,10 @@
     fill: var(--text-primary);
     font-size: 8px;
     text-anchor: middle;
+  }
+
+  .ring span{
+    font-weight: bold;
   }
   
   .todo-list {

@@ -13,7 +13,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 const ModernHomePage = () => {
-
   return (
     <div className="page-container">
       <div className="gradient-blob"></div>
@@ -27,15 +26,21 @@ const ModernHomePage = () => {
             <h1 className="animated-gradient">
               Showcase Your
               <div className="rotating-text">
-                <span>Developer Journey</span>
-                <span>GitHub Projects</span>
-                <span>LeetCode Progress</span>
-                <span>Portfolio</span>
+                <span className="dev-icons">
+                  <Linkedin className="linkedin" size={24} />
+                  <Code2 className="leetcode" size={24} />
+                  <Github className="github" size={24} />
+                </span>
+                {/* <span className="rotate-text-home">Developer Journey</span>
+                <span className="rotate-text-home">GitHub Projects</span>
+                <span className="rotate-text-home">LeetCode Progress</span>
+                <span className="rotate-text-home">Portfolio</span> */}
               </div>
             </h1>
             <p className="hero-subtitle glass-effect-dashbord">
               One platform to showcase all your developer achievements and get
-              personalized career guidance
+              personalized career guidance.
+              {/* Your ultimate developer companion to track progress, learn, and collaborate. */}
             </p>
             <div className="cta-group">
               <button className="primary-cta glass-effect-dashbord">
@@ -62,21 +67,21 @@ const ModernHomePage = () => {
           <div className="hero-visual glass-effect-dashbord">
             <div className="code-preview">
               <div className="code-header">
-                <span className="dot"></span>
-                <span className="dot"></span>
-                <span className="dot"></span>
+                <span className="dot dot1"></span>
+                <span className="dot dot2"></span>
+                <span className="dot dot3"></span>
               </div>
               <pre>
                 <code>
                   {`class Developer {
-                    skills = ['React', 'Node.js']
-                    leetcode = 200
-                    github = 500
-                                    
-                    getJobReadiness() {
-                      return "95%"
-                    }
-                  }`}
+  skills = ['React', 'Node.js']
+  leetcode = 200
+  github = 500
+                  
+  getJobReadiness() {
+    return "95%"
+  }
+}`}
                 </code>
               </pre>
             </div>
@@ -142,9 +147,9 @@ const ModernHomePage = () => {
                       a 15.9155 15.9155 0 0 1 0 31.831
                       a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
-                      stroke="var(--primary)"
+                      stroke="var(--github)"
                       strokeWidth="2"
-                      strokeDasharray="85, 100"
+                      strokeDasharray="100, 100"
                     />
                     <text x="18" y="20.35" className="percentage">
                       85%
@@ -152,6 +157,7 @@ const ModernHomePage = () => {
                   </svg>
                   <span>GitHub</span>
                 </div>
+
                 <div className="ring">
                   <svg viewBox="0 0 36 36">
                     <path
@@ -159,15 +165,33 @@ const ModernHomePage = () => {
                       a 15.9155 15.9155 0 0 1 0 31.831
                       a 15.9155 15.9155 0 0 1 0 -31.831"
                       fill="none"
-                      stroke="var(--secondary)"
+                      stroke="var(--leetcode)"
                       strokeWidth="2"
-                      strokeDasharray="75, 100"
+                      strokeDasharray="85, 100"
                     />
                     <text x="18" y="20.35" className="percentage">
                       75%
                     </text>
                   </svg>
                   <span>LeetCode</span>
+                </div>
+
+                <div className="ring">
+                  <svg viewBox="0 0 36 36">
+                    <path
+                      d="M18 2.0845
+                      a 15.9155 15.9155 0 0 1 0 31.831
+                      a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="var(--linkedin)"
+                      strokeWidth="2"
+                      strokeDasharray="90, 100"
+                    />
+                    <text x="18" y="20.35" className="percentage">
+                      75%
+                    </text>
+                  </svg>
+                  <span>LinkedIn</span>
                 </div>
               </div>
             </div>
@@ -178,17 +202,18 @@ const ModernHomePage = () => {
                   <span className="checkbox">✓</span>
                   Complete GitHub Profile
                 </li>
-                <li>
-                  <span className="checkbox"></span>
-                  Solve 5 more LeetCode Hard problems
+
+                <li className="completed">
+                  <span className="checkbox">✓</span>
+                  Solve DSA problems with road map in 90 days
                 </li>
-                <li>
-                  <span className="checkbox"></span>
-                  Update LinkedIn Summary
+                <li className="completed">
+                  <span className="checkbox">✓</span>
+                  Update LinkedIn for Job
                 </li>
-                <li>
-                  <span className="checkbox"></span>
-                  Add project documentation
+                <li className="completed">
+                  <span className="checkbox">✓</span>
+                  Collaborate with friends & track progress
                 </li>
               </ul>
             </div>
