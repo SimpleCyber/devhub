@@ -114,7 +114,7 @@ const Profile = () => {
         <div className="main-profile-header">
           <div className="main-profile-image-container">
             <img
-              src={formData.profileImage || "/placeholder.svg"}
+              src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT24JcMoDyGbsqmmeqU3bwUaXCB98_pwm9IBQ&s"}
               alt="Profile"
               className="main-profile-img"
             />

@@ -112,6 +112,7 @@ def fetch_github_data(request, username):
         "followers": user_data.get("followers"),
         "following": user_data.get("following"),
         "public_repos": user_data.get("public_repos"),
+        "bio":user_data.get("bio"),
     }
 
     # Fetch Repositories
@@ -124,7 +125,7 @@ def fetch_github_data(request, username):
     # Filter Top 5 Non-Forked Repositories
     top_repos = []
     for repo in repos_data:
-        if not repo.get("fork") and len(top_repos) < 5:
+        if not repo.get("fork") and len(top_repos) < 4:
             top_repos.append(
                 {
                     "name": repo.get("name"),
@@ -264,7 +265,7 @@ def fetch_linkedin_data(request, username):
                     "EndMonth": edu.get("end", {}).get("month"),
                     "URL": edu.get("url"),
                 }
-                for edu in data.get("educations", [])
+                for edu in data.get("educations", [])[:1] 
             ],
             "Position": [
                 {
@@ -278,14 +279,14 @@ def fetch_linkedin_data(request, username):
                     "EndMonth": pos.get("end", {}).get("month"),
                     "CompanyLogo": pos.get("companyLogo"),
                 }
-                for pos in data.get("position", [])
+                for pos in data.get("position", [])[:1] 
             ],
             "Skills": [
                 {
                     "Name": skill.get("name"),
                     "PassedSkillAssessment": skill.get("passedSkillAssessment"),
                 }
-                for skill in data.get("skills", [])
+                for skill in data.get("skills", [])[:5] 
             ]
         }
 

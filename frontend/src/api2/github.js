@@ -1,12 +1,17 @@
 import React from 'react';
-import { MapPin, Mail, Users, GitFork, Book, GitCommit, Star } from 'lucide-react';
+import { MapPin, Mail, Users, GitFork, Book, GitCommit, Star,User,contact } from 'lucide-react';
 import './github.css';
 
 const GitHubCard = ({ data }) => {
+  console.log("🌿 GitHub ", data);
+  if (!data) {
+    return <div>Loading GitHub data...</div>; // Handle the loading state
+  }
+
   const { profile, top_repositories, contributions } = data;
 
   return (
-       
+    
     <>
     <h2 className="full-name">GitHub</h2>
     <div className="github-card">
@@ -21,7 +26,7 @@ const GitHubCard = ({ data }) => {
           <div className="info-items">
             <div className="info-item">
               <Mail size={16} />
-              <span>{profile.email}</span>
+              <span>{profile.email || profile.username }</span>
             </div>
             
             <div className="info-item">
@@ -34,11 +39,22 @@ const GitHubCard = ({ data }) => {
               <span>{profile.followers} followers </span>
               {/* <span> {profile.following} following</span> */}
             </div>
+            <div className="info-item">
+              <User size={16} />
+              <span>{profile.following} following </span>
+              {/* <span> {profile.following} following</span> */}
+            </div>
             
             <div className="info-item">
               <Book size={16} />
-              <span>{profile.public_repos} repositories</span>
+              <span>{profile.public_repos} Public Repo</span>
             </div>
+
+
+            {/* <div className="info-item">
+              <contact size={16} />
+              <span>{profile.bio}</span>
+            </div> */}
           </div>
         </div>
       </div>

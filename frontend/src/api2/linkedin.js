@@ -16,6 +16,10 @@ import "./linkedin.css";
 const LinkedInProfile = ({demoData}) => {
   // Demo data - you can replace this with API data later
 
+  if (!demoData) {
+    return <div>Loading LinkedIn data...</div>; // Handle case when demoData is null
+  }
+
 
   const formatDate = (year, month) => {
     if (!year || !month) return "Present";

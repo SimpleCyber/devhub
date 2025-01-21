@@ -21,6 +21,12 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
     // Calculate if tooltip should appear above or below the point
     const above = yPos > 100; // Show above if point is in lower half
 
+
+    console.log("🌿 GitHub ", active, payload, coordinate );
+  if (!active) {
+    return <div>Loading GitHub data...</div>; // Handle the loading state
+  }
+
     return (
       <div
         className="custom-tooltip"
@@ -73,6 +79,8 @@ const LeetCodeStats = ({ profile }) => {
   };
 
   const counts = getDifficultyCounts();
+
+  
 
   return (
     <>
