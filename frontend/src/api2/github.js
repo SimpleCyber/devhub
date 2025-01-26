@@ -5,7 +5,7 @@ import './github.css';
 const GitHubCard = ({ data }) => {
   console.log("🌿 GitHub ", data);
   if (!data) {
-    return <div>Loading GitHub data...</div>; // Handle the loading state
+    return <div>Loading GitHub data...</div>; 
   }
 
   const { profile, top_repositories, contributions } = data;
@@ -37,12 +37,10 @@ const GitHubCard = ({ data }) => {
             <div className="info-item">
               <Users size={16} />
               <span>{profile.followers} followers </span>
-              {/* <span> {profile.following} following</span> */}
             </div>
             <div className="info-item">
               <User size={16} />
               <span>{profile.following} following </span>
-              {/* <span> {profile.following} following</span> */}
             </div>
             
             <div className="info-item">
@@ -50,11 +48,6 @@ const GitHubCard = ({ data }) => {
               <span>{profile.public_repos} Public Repo</span>
             </div>
 
-
-            {/* <div className="info-item">
-              <contact size={16} />
-              <span>{profile.bio}</span>
-            </div> */}
           </div>
         </div>
       </div>
@@ -83,7 +76,6 @@ const GitHubCard = ({ data }) => {
   );
 };
 
-// Helper function to get language colors
 const getLanguageColor = (language) => {
   const colors = {
     JavaScript: '#f1e05a',

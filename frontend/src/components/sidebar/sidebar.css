@@ -50,6 +50,9 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 9999px;
+  margin-left:1rem ;
+  margin-bottom: .5rem;
+
 }
 
 .profile-details {
@@ -63,6 +66,7 @@
 
 .profile-name {
   font-weight: 600;
+  font-size: larger;
 }
 
 .profile-view {
@@ -161,6 +165,8 @@
 .profile-details-sidebar {
   width: 100%;
   margin-left: 1rem;
+  padding: 1rem;
+
 }
 
 .sidebar.closed .profile-details {

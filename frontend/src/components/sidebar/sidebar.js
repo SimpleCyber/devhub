@@ -69,7 +69,7 @@ export function Sidebar() {
           className="profile-image-sidebar"
         />
         <div className="profile-details-sidebar">
-          <h2 className="profile-name">Satyam</h2>
+          <h3 className="profile-name">Satyam Yadav</h3>
         </div>
       </div>
     </div>
