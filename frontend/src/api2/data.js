@@ -74,7 +74,7 @@ const useFetchPlatformData = () => {
       }
       try {
         const response = await axios.get(
-          "http://127.0.0.1:8000/api/leetcode/vitthalbiradar50/"
+          "http://127.0.0.1:8000/api/leetcode/pkc5uOVzbM/"
         );
         setLeetcodeData(response.data);
         cacheData("leetcodeCache", response.data); // Cache the fetched data

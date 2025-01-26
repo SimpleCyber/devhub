@@ -32,7 +32,7 @@ DevHub is a platform designed to help developers showcase their professional pro
 
 
 
-### 3. Dashboard Page
+### 3. Dashboard Page   -- Done 😎 22/1/2024
 - Aggregated data from GitHub, LeetCode, and LinkedIn.
 - Interactive visualizations and summaries of user activities.
 - Bios from the gemini api

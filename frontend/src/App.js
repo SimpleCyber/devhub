@@ -6,9 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ModernHomePage from './components/home/ModernHomePage'; 
 import AuthPages from './components/auth/AuthPages'; 
 import Profile from "./components/profile/profile";
-
 import "./components/home/ModernHomePage.css"
 import Dashboard from "./components/dashboard/dashboard";
+import JobReady from "./components/jobRediness/jobRedy";
 
 
 function App() {
@@ -26,6 +26,10 @@ function App() {
 
         {/* Define the dashboard path */}
         <Route path="/dashboard" element={ <Dashboard />} />
+
+        {/* AI checker for job readiness */}
+        <Route path="/jobReady" element={ <JobReady />} />
+
 
       </Routes>
     </Router>

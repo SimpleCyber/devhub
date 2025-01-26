@@ -32,7 +32,7 @@ const LinkedInProfile = ({demoData}) => {
 
   return (
     <div className="linkedin-container">
-      <h2 className="full-name">Leetcode</h2>
+      <h2 className="full-name">LinkedIn</h2>
         <div className="profile-content">
 
 

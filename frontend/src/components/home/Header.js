@@ -24,9 +24,6 @@ const Header = () => {
   const handleRedirectDashboard = () => {
     navigate("/dashboard");
   };
-
-  
-
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-content">
