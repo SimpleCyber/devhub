@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+// maijorproject.js
+import React, { useState, useEffect } from "react";
 import { Calendar } from 'lucide-react';
+import { auth } from "../firebase";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import "./maijorproject.css"
 
 const MajorProjectItem = ({ name, date, link, isActive }) => {
@@ -29,34 +32,44 @@ const MajorProjectItem = ({ name, date, link, isActive }) => {
   );
 };
 
-const majorProjects = [
-  {
-    name: "Portfolio",
-    date: "12/Dec/2024",
-    link: "https://simplecyber.github.io/Satyam/",
-  },
-  {
-    name: "Fruit Classification ML",
-    date: "11/Mar/2024",
-    link: "https://fruit-classify.onrender.com/",
-  },
-  {
-    name: "Learn React with 25 Projects",
-    date: "14/Jan/2024",
-    link: "https://learn-react-25.vercel.app/",
-  },
-];
-
 export const MajorProject = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      if (!auth.currentUser) return;
+
+      const db = getFirestore();
+      const docRef = doc(db, "profiles", auth.currentUser.uid);
+
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.projects && data.projects.length > 0) {
+            setProjects(data.projects);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch projects data", err);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   const nextProject = () => {
-    setCurrentIndex((prev) => (prev + 1) % majorProjects.length);
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
   };
 
   const prevProject = () => {
-    setCurrentIndex((prev) => (prev - 1 + majorProjects.length) % majorProjects.length);
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
   };
+
+  if (projects.length === 0) {
+    return <div>No projects found</div>;
+  }
 
   return (
     <div className="major-projects-container">
@@ -65,10 +78,12 @@ export const MajorProject = () => {
           &#8592;
         </button>
         <div className="carousel-content">
-          {majorProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <MajorProjectItem
               key={index}
-              {...project}
+              name={project.name}
+              date={project.date}
+              link={project.url}
               isActive={index === currentIndex}
             />
           ))}
@@ -78,7 +93,7 @@ export const MajorProject = () => {
         </button>
       </div>
       <div className="carousel-indicators">
-        {majorProjects.map((_, index) => (
+        {projects.map((_, index) => (
           <button
             key={index}
             className={`indicator ${index === currentIndex ? "active" : ""}`}

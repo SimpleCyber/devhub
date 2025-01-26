@@ -45,7 +45,6 @@ const MetricCard = ({ icon: Icon, title, value, subValue, color, details }) => (
 
 export default function Dashboard() {
   const { linkedinData, githubData, leetcodeData } = useFetchPlatformData();
-  // const { githubData, leetcodeData } = useFetchPlatformData();
 
   const metrics = [
     {
