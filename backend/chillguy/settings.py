@@ -61,6 +61,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',  # React frontend
     'https://devhub-k9dg.onrender.com',  # React frontend on Render
+    'https://devhub1.vercel.app'
 ]
 
 ROOT_URLCONF = 'chillguy.urls'
