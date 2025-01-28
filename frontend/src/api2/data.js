@@ -3,6 +3,12 @@ import axios from "axios";
 import { auth } from "../firebase";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
+const API_URL = process.env.REACT_APP_API_URL;
+if (!API_URL) {
+  console.error('API URL is not defined in environment variables');
+}
+
+
 // Custom Hook
 const useFetchPlatformData = () => {
   const [linkedinData, setLinkedinData] = useState(null);
@@ -91,7 +97,7 @@ const useFetchPlatformData = () => {
       }
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/linkedin/${usernames.linkedin}/`
+          `${API_URL}linkedin/${usernames.linkedin}/`
         );
         setLinkedinData(response.data);
         cacheData("linkedinCache", response.data);
@@ -107,7 +113,7 @@ const useFetchPlatformData = () => {
       }
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/github/${usernames.github}/`
+          `${API_URL}github/${usernames.github}/`
         );
         setGithubData(response.data);
         cacheData("githubCache", response.data);
@@ -123,7 +129,7 @@ const useFetchPlatformData = () => {
       }
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/leetcode/${usernames.leetcode}/`
+          `${API_URL}leetcode/${usernames.leetcode}/`
         );
         setLeetcodeData(response.data);
         cacheData("leetcodeCache", response.data);
