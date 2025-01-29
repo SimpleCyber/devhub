@@ -10,16 +10,18 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'devhub-k9dg.onrender.com',  # Render domain
+    '127.0.0.1',                 # Localhost for development
+    'localhost',                 # Localhost for testing
+    'https://devhub-backend2-oi69.onrender.com'
+]
 
 
 # Application definition
@@ -49,15 +51,18 @@ MIDDLEWARE = [
     
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://devhub-k9dg.onrender.com'
-]
 
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',  # React frontend
     'https://devhub-k9dg.onrender.com',  # React frontend on Render
     'https://devhub1.vercel.app'
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  
+CSRF_TRUSTED_ORIGINS = [
+    "https://devhub-k9dg.onrender.com",
+    "https://devhub1.vercel.app",
 ]
 
 ROOT_URLCONF = 'chillguy.urls'
@@ -81,8 +86,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'chillguy.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -91,9 +94,6 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
