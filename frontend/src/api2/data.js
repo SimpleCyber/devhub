@@ -5,12 +5,7 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const API_URL = "https://devhub-k9dg.onrender.com/api/";
 
-if (!API_URL) {
-  console.error('API URL is not defined in environment variables');
-}
 
-console.log("process.env.REACT_APP_API_URL : ",API_URL);
-console.log(API_URL);
 
 // Custom Hook
 const useFetchPlatformData = () => {
@@ -101,7 +96,6 @@ const useFetchPlatformData = () => {
       try {
         const response = await axios.get(
           `${API_URL}linkedin/${usernames.linkedin}/`,
-          console.log(`${API_URL}linkedin/${usernames.linkedin}/`)
         );
         setLinkedinData(response.data);
         cacheData("linkedinCache", response.data);
@@ -118,7 +112,6 @@ const useFetchPlatformData = () => {
       try {
         const response = await axios.get(
           `${API_URL}github/${usernames.github}/`,
-          console.log(`${API_URL}github/${usernames.github}/`)
         );
         setGithubData(response.data);
         cacheData("githubCache", response.data);
@@ -135,7 +128,6 @@ const useFetchPlatformData = () => {
       try {
         const response = await axios.get(
           `${API_URL}leetcode/${usernames.leetcode}/`,
-          console.log(`${API_URL}leetcode/${usernames.leetcode}/`)
         );
         setLeetcodeData(response.data);
         cacheData("leetcodeCache", response.data);
