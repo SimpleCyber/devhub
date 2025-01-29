@@ -5,3 +5,4 @@ gunicorn
 whitenoise
 django-cors-headers
 dj-database-url
+google-generativeai==0.3.2
