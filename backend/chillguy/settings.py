@@ -22,8 +22,6 @@ ALLOWED_HOSTS = [
     'localhost',                 # Localhost for testing
     'https://devhub-backend2-oi69.onrender.com'
 ]
-
-
 # Application definition
 
 INSTALLED_APPS = [
