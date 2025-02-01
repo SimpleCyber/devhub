@@ -122,7 +122,10 @@ const LeetCodeStats = ({ profile }) => {
           <div className="badges-container">
             {profile.matchedUser.badges.map((badge, index) => (
               <div key={index} className="badge-item">
-                <img src={badge.icon} alt={badge.displayName} />
+                <img
+                  src={badge.icon.startsWith('http') ? badge.icon : `https://leetcode.com${badge.icon}`}
+                  alt={badge.displayName}
+                />
               </div>
             ))}
           </div>
