@@ -14,7 +14,7 @@
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
-    opacity: 0.6;
+    opacity: 0.3;
   }
   
   .auth-blob-1 {
@@ -24,6 +24,7 @@
     top: -100px;
     right: -100px;
     animation: float 8s ease-in-out infinite;
+
   }
   
   .auth-blob-2 {

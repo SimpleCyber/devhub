@@ -5,8 +5,6 @@ import google.generativeai as genai
 from gtts import gTTS
 from io import BytesIO
 import base64
-
-
 from dotenv import load_dotenv
 
 # Load environment variables from a .env file
@@ -16,7 +14,6 @@ load_dotenv()
 GIT_HUB_KEY = os.getenv("GIT_HUB_KEY")
 LINKEDIN_API_KEY = os.getenv("LINKEDIN_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
 
 # Configure Gemini API Key (Directly using the provided key)
 genai.configure(api_key=GEMINI_API_KEY)

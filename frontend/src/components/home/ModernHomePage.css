@@ -64,6 +64,7 @@
   .page-container {
     position: relative;
     min-height: 100vh;
+    z-index: 1;
   }
   
   .gradient-blob {
@@ -74,25 +75,45 @@
     height: 600px;
     border-radius: 50%;
     background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
-    filter: blur(100px);
-    opacity: 0.3;
+    filter: blur(50px);
+    opacity: .8;
     animation: blob-float 20s ease-in-out infinite;
-    z-index: -1;
+    z-index: 0;
   }
   
   .gradient-blob2 {
     position: fixed;
-    bottom: -200px;
-    left: -200px;
+    bottom: 0;  /* Align to the bottom */
+    left: 0;  /* Align to the left */
     width: 500px;
     height: 500px;
     border-radius: 50%;
     background: linear-gradient(45deg, var(--gradient-2), var(--gradient-3));
-    filter: blur(100px);
-    opacity: 0.2;
+    filter: blur(50px);
+    opacity: .8;
     animation: blob-float 15s ease-in-out infinite reverse;
-    z-index: -1;
-  }
+    z-index: 0;
+    transform: translate(-50%, 50%); /* Moves it partially out of screen for soft edge effect */
+}
+
+
+
+
+.gradient-blob3 {
+  position: fixed;
+  bottom: 0;  /* Align to the bottom */
+  left: 0;  /* Align to the left */
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, var(--gradient-2), var(--gradient-3));
+  filter: blur(50px);
+  opacity: .8;
+  animation: blob-float 15s ease-in-out infinite reverse;
+  z-index: 0;
+  transform: translate(-50%, 50%); /* Moves it partially out of screen for soft edge effect */
+}
+
   
   @keyframes blob-float {
     0% { transform: translate(0, 0) rotate(0deg); }

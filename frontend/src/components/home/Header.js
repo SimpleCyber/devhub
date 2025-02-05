@@ -39,7 +39,7 @@ const Header = () => {
             className="theme-toggle glass-effect-dashbord"
             onClick={() => setDarkMode(!darkMode)}
           >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            {darkMode ? <Sun size={20} style={{color:"white"}}  /> : <Moon size={20}  />}
           </button>
           <button className="connect-btn glass-effect-dashbord" onClick={handleRedirect}>
             Connect <ArrowRight size={16} />

@@ -3,7 +3,10 @@ import axios from "axios";
 import { auth } from "../firebase";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
+// const API_URL = "http://127.0.0.1:8000/api/";
+
 const API_URL = "https://devhub-k9dg.onrender.com/api/";
+
 
 
 

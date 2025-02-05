@@ -8,8 +8,9 @@ import AuthPages from './components/auth/AuthPages';
 import Profile from "./components/profile/profile";
 import "./components/home/ModernHomePage.css"
 import Dashboard from "./components/dashboard/dashboard";
-import JobReady from "./components/jobRediness/jobRedy";
-
+import JobReady from "./components/InterviewPratice/jobRedy";
+import Learn from "./components/Learn/learn";
+import Friend from "./components/Friends/friend";
 
 function App() {
   return (
@@ -28,7 +29,13 @@ function App() {
         <Route path="/dashboard" element={ <Dashboard />} />
 
         {/* AI checker for job readiness */}
+        
         <Route path="/jobReady" element={ <JobReady />} />
+
+        <Route path="/learn" element={<Learn />} />
+
+        <Route path="/friends" element={<Friend />} />
+
 
 
       </Routes>
